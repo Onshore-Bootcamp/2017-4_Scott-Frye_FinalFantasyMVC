@@ -1,0 +1,55 @@
+﻿@using FinalFantasyMVC.Models
+@model GamePO
+@using System.ComponentModel.DataAnnotations;
+@{
+    ViewBag.Title = "Create Game";
+}
+
+<h2>CreateGame</h2>
+@using (Html.BeginForm("CreateGame", "Game", FormMethod.Post))
+{
+    @Html.HiddenFor(model => Model.GameID)
+    <div class="form">
+        @Html.LabelFor(model => Model.GameTitle)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.GameTitle, "", new { @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.GameTitle, "", new { @style = "color: red"})
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.RomanNumeral)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.RomanNumeral, "", new { @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.RomanNumeral, "", new { @style = "color: red"})
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.ReleaseDate)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.ReleaseDate, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ReleaseDate, "", new { @style = "color: red"})
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.CopiesSold)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.CopiesSold, "", new { @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.CopiesSold, "", new { @style ="color: red"})
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.GameSummary)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.GameSummary, "", new { @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.GameSummary, "", new { @style = "color: red"})
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.Price)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.Price, "", new { @class = "form-control"})
+            @Html.ValidationMessageFor(X => X.Price, "", new { @style = "color: red"})
+        </div>
+    </div>
+    <input class="btn-success" type="submit" value="Create"/>
+}

@@ -1,0 +1,56 @@
+﻿ @using FinalFantasyMVC.Models
+@model List<CharacterPO>
+@{
+    ViewBag.Title = "CharacterIndex";
+}
+
+
+<h2>Character Information</h2> 
+@if ((Int64)Session["RoleID"] >= 2)
+{
+    <h4>@Html.ActionLink("Create Character", "CreateCharacter", new { gameID = ViewBag.GameId }, null)</h4>
+}
+else
+{
+}       
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Alignment</th>
+            <th>Weapon Of choice</th>
+            <th>Bio</th>
+            <th>Male Or Female</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+        @foreach (CharacterPO po in Model)
+        {
+            <tr>
+                <td>@po.FirstName</td>
+                <td>@po.LastName</td>
+                <td>@po.Alignment</td>
+                <td>@po.WeaponOfChoice</td>
+                <td>@po.Bio</td>
+                <td>@po.MaleOrFemale</td>
+                @if ((Int64)Session["RoleID"] >= 2)
+                {
+                <td>@Html.ActionLink("Update", "UpdateCharacter", new { characterID = po.CharacterID, gameId = ViewBag.GameID }, null)</td>
+                }
+                else
+                {
+                }
+                @if ((Int64)Session["RoleID"] == 3)
+                {
+                <td>@Html.ActionLink("Delete", "DeleteCharacter", new { characterID = po.CharacterID, gameId = ViewBag.GameID }, new { @onclick = "return ConfirmDelete()" })</td>
+                }
+                else
+                {
+                }
+            </tr>
+            }
+    </tbody>
+</table>
+

@@ -1,0 +1,54 @@
+﻿@using FinalFantasyMVC.ViewModels
+@model UserViewModel
+@{
+    ViewBag.Title = "UpdateUser";
+}
+
+<h2>Update User</h2>
+@using (Html.BeginForm("UpdateUser", "User", FormMethod.Post))
+{
+    @Html.HiddenFor(model => Model.Form.UserID)
+    <div class="form">
+        @Html.LabelFor(model => Model.Form.FullName)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.Form.FullName, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Form.FullName, "", new { @style = "color: red" })
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.Form.UserName)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.Form.UserName, "", new { @class = "form-control" })
+            @if (Model.message == null)
+            {
+                @Html.ValidationMessageFor(x => x.Form.UserName, "", new { @style = "color: red" })
+            }
+            else
+            {
+                <span class="text-danger">
+                @Html.Raw(Model.message)
+                </span>
+            }
+        </div>
+    </div>
+    @Html.HiddenFor(model => Model.Form.UserPassword)
+    <div class="form">
+        @Html.LabelFor(model => Model.Form.RoleID)
+        <div class="form-group">
+            @Html.DropDownListFor(x => x.Form.RoleID, new SelectListItem[]
+       {
+                new SelectListItem() {Text = "User", Value="1"},
+                new SelectListItem() {Text = "Power User", Value="2"},
+                new SelectListItem() {Text = "Admin", Value="3"}
+       })
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.Form.Email)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.Form.Email, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Form.Email, "", new { @style = "color: red" })
+        </div>
+    </div>
+    <input class="btn-success" type="submit" value="Update" />
+}

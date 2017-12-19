@@ -1,0 +1,42 @@
+﻿@using FinalFantasyMVC.Models;
+@model List<UserPO>
+@{
+    ViewBag.Title = "UserIndex";
+}
+<h2>User Information</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Username</th>
+            <th>Role ID</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UserPO po in Model)
+        {
+            <tr>
+                <td>@po.FullName</td>
+                <td>@po.UserName</td>
+                <td>@po.RoleID</td>
+                <td>@po.Email</td>
+                @if ((Int64)Session["RoleID"] == 3)
+                {
+                    if (po.RoleID < 3)
+                    {
+                        <td>@Html.ActionLink("Update", "UpdateUser", "User", new { userID = po.UserID }, null)</td>
+                        <td>@Html.ActionLink("Delete", "DeleteUser", "User", new { userID = po.UserID }, new { @onclick = "return ConfirmDelete()" })</td>
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                }
+            </tr>
+        }
+    </tbody>
+</table>

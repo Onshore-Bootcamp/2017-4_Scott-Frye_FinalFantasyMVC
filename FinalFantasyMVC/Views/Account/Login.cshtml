@@ -1,0 +1,24 @@
+﻿@using FinalFantasyMVC.Models
+@model LoginPO
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <div class="form">
+        @Html.LabelFor(model => Model.UserName)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.UserName, "", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.UserPassword)
+        <div class="form-group">
+            @Html.PasswordFor(model => Model.UserPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    @Html.ValidationSummary(false)
+    <input class="btn-success" type="submit" value="Login"/>
+}

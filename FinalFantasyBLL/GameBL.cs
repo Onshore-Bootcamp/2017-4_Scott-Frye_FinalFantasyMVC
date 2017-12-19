@@ -1,0 +1,8 @@
+﻿
+namespace FinalFantasyBLL
+{
+    class GameBL
+    {
+        
+    }
+}

@@ -1,0 +1,68 @@
+﻿@using FinalFantasyMVC.Models
+@model CharacterPO
+@{
+    ViewBag.Title = "CreateCharacter";
+}
+
+<h2>Create Character</h2>
+@using (Html.BeginForm("CreateCharacter", "Character", FormMethod.Post))
+{
+    @Html.HiddenFor(model => Model.CharacterID)
+    <div class="form">
+        @Html.LabelFor(model => Model.FirstName)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.FirstName, "", new { @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.FirstName, "", new { @style = "color: red"})
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.LastName)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.LastName, "", new { @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.LastName, "", new { @style = "color: red"})
+        </div>
+    </div>
+    @Html.Hidden("GameID", (long)ViewBag.GameId)
+    <div class="form">
+        @Html.LabelFor(model => Model.Alignment)
+        <div class="form-group">
+            @Html.DropDownListFor(x => x.Alignment, new SelectListItem[]
+       {
+                new SelectListItem() {Text = "Lawful Good", Value="Lawful Good"},
+                new SelectListItem() {Text = "Good", Value="Good"},
+                new SelectListItem() {Text = "Chaotic Good", Value="Chaotic Good"},
+                new SelectListItem() {Text = "Lawful Neutral", Value="Lawful Neutral" },
+                new SelectListItem() {Text = "Neutral", Value = "Neutral" },
+                new SelectListItem() {Text = "Chaotic Neutral", Value = "Chaotic Neutral" },
+                new SelectListItem() {Text = "Lawful Evil", Value = "Lawful Evil" },
+                new SelectListItem() {Text = "Evil", Value = "Evil" },
+                new SelectListItem() {Text = "Chaotic Evil", Value = "Chaotic Evil" }
+       })
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.WeaponOfChoice)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.WeaponOfChoice, "", new { @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.WeaponOfChoice, "", new { @style = "color: red"})
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.Bio)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.Bio, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Bio, "", new { @style = "color: red"})
+        </div>
+    </div>
+    <div class="form">
+        @Html.LabelFor(model => Model.MaleOrFemale)
+        <div class="form-group">
+            @Html.DropDownListFor(x => x.MaleOrFemale, new SelectListItem[]
+       {
+           new SelectListItem() {Text = "Male", Value = "Male"},
+           new SelectListItem() {Text = "Female", Value = "Female"}
+       })
+        </div>
+    </div>
+    <input class="btn-success", type="submit", value="Create"/>
+}
